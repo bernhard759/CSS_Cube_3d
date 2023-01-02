@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            min-height: 500vh;
+            background-color: rgba(70, 130, 180, 0.2);
+            animation: body 1s linear;
+            animation-play-state: paused;
+            animation-delay: calc(var(--scroll) * -1s);
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        }
+
+        @keyframes body {
+            to {
+                background-color: rgba(70, 130, 180, 0.8);
+            }
+        }
+
+
+        .scroll-progress-bar {
+            height: 4px;
+            width: 0%;
+            background-color: gray;
+            position: fixed;
+            top: 0;
+            left: 0;
+            animation: progress 1s linear;
+            animation-play-state: paused;
+            animation-delay: calc(var(--scroll) * -1s);
+            z-index: 5;
+        }
+
+        @keyframes progress {
+            to {
+                background-color: black;
+                width: 100%;
+            }
+        }
+
+        .banner {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        .banner1 {
+            inset: 0;
+            position: absolute;
+            background-color: SteelBlue ;
+            transform: skewY(-10deg);
+
+        }
+
+        .banner2 {
+            inset: 0;
+            height: 200px;
+            position: absolute;
+            background-color: SteelBlue;
+            color: white;
+            padding-left: 20%;
+    
+        }
+
+        .cube-div {
+            --cubesize: 25vmin;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            perspective: 100vmin;
+            perspective-origin: center;
+            background-color: darkred;
+        }
+
+
+        /* Cube */
+        .cube {
+            transform-style: preserve-3d;
+            transform: rotateX(0deg) rotateZ(45deg) rotateY(-45deg);
+            animation: cube 1s linear;
+            animation-play-state: paused;
+            animation-delay: calc(var(--scroll) * -1s);
+            position: relative;
+        }
+
+
+        @keyframes cube {
+            to {
+                transform: rotateX(360deg) rotateZ(45deg) rotateY(-45deg);
+            }
+        }
+
+
+        /* Sides of the cube */
+        .side {
+            position: absolute;
+            width: var(--cubesize);
+            height: var(--cubesize);
+            background: whitesmoke;
+            border: 1px solid lightgray;
+            top: calc(var(--cubesize) * -.5);
+            left: calc(var(--cubesize) * -.5);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .side span {
+            width: 4vmin;
+            height: 4vmin;
+            margin: auto;
+        }
+
+        span.point {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 100%;
+        }
+
+        span.empty {
+            background-color: transparent;
+        }
+
+        .side-content {
+            width: 100%;
+            height: 100%;
+            padding: 1vmin;
+            box-sizing: border-box;
+        }
+
+        .side-content.one {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .side-content.two {
+            display: grid;
+            margin: auto;
+            gap: 2vmin;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+
+        .side-content.three {
+            display: grid;
+            margin: auto;
+            gap: 2vmin;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .side-content.four {
+            display: grid;
+            margin: auto;
+            gap: 2vmin;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+
+        .side-content.five {
+            display: grid;
+            margin: auto;
+            gap: 2vmin;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .side-content.six {
+            display: grid;
+            margin: auto;
+            gap: 2vmin;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .front {
+            transform: translateZ(calc(var(--cubesize) * 0.5));
+        }
+
+        .back {
+            transform: rotateX(180deg) translateZ(calc(var(--cubesize) * 0.5));
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(calc(var(--cubesize) * 0.5));
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(calc(var(--cubesize) * 0.5));
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(calc(var(--cubesize) * 0.5));
+        }
+
+        .bot {
+            transform: rotateX(-90deg) translateZ(calc(var(--cubesize) * 0.5));
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="scroll-progress-bar"></div>
+    <div class="banner">
+        <div class="banner1"></div>
+        <div class="banner2"><h1>CSS Animation 3D Cube</h1></div>
+    </div>
+    <div class="cube-div">
+        <div class="cube">
+            <div class="side front">
+                <div class="side-content six">
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                </div>
+            </div>
+            <div class="side back">
+                <div class="side-content one">
+                    <span class="point"></span>
+                </div>
+            </div>
+            <div class="side left">
+                <div class="side-content three">
+                    <span class="point"></span>
+                    <span class="empty"></span>
+                    <span class="empty"></span>
+                    <span class="empty"></span>
+                    <span class="point"></span>
+                    <span class="empty"></span>
+                    <span class="empty"></span>
+                    <span class="empty"></span>
+                    <span class="point"></span>
+                </div>
+            </div>
+            <div class="side right">
+                <div class="side-content four">
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                </div>
+            </div>
+            <div class="side top">
+                <div class="side-content five">
+                    <span class="point"></span>
+                    <span class="empty"></span>
+                    <span class="point"></span>
+                    <span class="empty"></span>
+                    <span class="point"></span>
+                    <span class="empty"></span>
+                    <span class="point"></span>
+                    <span class="empty"></span>
+                    <span class="point"></span>
+                </div>
+            </div>
+            <div class="side bot">
+                <div class="side-content two">
+                    <span class="point"></span>
+                    <span class="empty"></span>
+                    <span class="empty"></span>
+                    <span class="point"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        /* Scroll Eventlistener */
+        window.addEventListener('scroll', () => {
+            //console.log(window.pageYOffset)
+            //console.log(document.body.offsetHeight, window.innerHeight);
+            document.body.style.setProperty('--scroll', (window.pageYOffset / (document.body.offsetHeight - window.innerHeight)) - 0.0005);
+        }, false);
+    </script>
+
+</body>
+
+</html>
