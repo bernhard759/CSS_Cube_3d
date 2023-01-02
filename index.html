@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            box-sizing: border-box;
+            --rotationXFrom: 0deg;
+            --rotationYFrom: 0deg;
+            --rotationXTo: 360deg;
+            --rotationYTo: 360deg;
+            margin: 1rem;
+        }
+
+        div {
+            box-sizing: content-box;
+        }
+
+        .cube-div {
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: gainsboro;
+            margin: auto;
+            max-width: 550px;
+            max-height: 550px;
+            min-width: 250px;
+            min-height: 250px;
+            aspect-ratio: 1;
+        }
+
+        .cube-container {
+            height: 50%;
+            width: 50%;
+            top: 25%;
+            left: 25%;
+            perspective: 800px;
+            perspective-origin: center;
+            background-color: transparent;
+            position: absolute;
+        }
+
+        /* Cube */
+        .cube {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            transform: translateZ(0);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            will-change: transform;
+        }
+
+        /* Sides of the cube */
+        .side {
+            background: rgba(30, 144, 255, 0.4);
+            border: 2px solid slategray;
+            position: absolute;
+            width: 98.2%;
+            height: 98.2%;
+        }
+
+        .side-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%
+        }
+
+        .front {
+            transform: translateZ(136px);
+        }
+
+        .back {
+            transform: rotateX(180deg) translateZ(136px);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(136px);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(136px);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(136px);
+        }
+
+        .bot {
+            transform: rotateX(-90deg) translateZ(136px);
+        }
+
+
+        /* Cube animation */
+        @keyframes rotate {
+            0% {
+                transform: rotateX(var(--rotationXFrom)) rotateY(var(--rotationYFrom));
+            }
+
+            100% {
+                transform: rotateX(var(--rotationXTo)) rotateY(var(--rotationYTo));
+            }
+        }
+
+        /* Form controls */
+        .form-controls {
+            position: relative;
+            margin: auto;
+            min-width: 250px;
+            max-width: 550px;
+            margin-top: 1rem;
+            padding: 0.5rem;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS and JS 3D Cube Animation</h1>
+    <div class="cube-div">
+        <div class="cube-container">
+            <div class="cube">
+                <div class="side front">
+                    <div class="side-content">Front</div>
+                </div>
+                <div class="side back">
+                    <div class="side-content">Back</div>
+                </div>
+                <div class="side left">
+                    <div class="side-content">Left</div>
+                </div>
+                <div class="side right">
+                    <div class="side-content">Right</div>
+                </div>
+                <div class="side top">
+                    <div class="side-content">Top</div>
+                </div>
+                <div class="side bot">
+                    <div class="side-content">Bottom</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-controls">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="animation-switch">
+            <label class="form-check-label" for="animation-switch">Run animation</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="mouse-move-switch">
+            <label class="form-check-label" for="mouse-move-switch">Enable Mousemove</label>
+        </div>
+    </div>
+
+    <!-- Resize Observer -->
+    <script>
+        /* Resize Observer object */
+        const observer = new ResizeObserver(entries => {
+            entries.forEach(entry => {
+                entry.target.querySelector(".front").style.transform = `translateZ(${entry.contentRect.width / 4.05}px)`;
+                entry.target.querySelector(".back").style.transform = `rotateX(180deg) translateZ(${entry.contentRect.width / 4.05}px)`;
+                entry.target.querySelector(".left").style.transform = `rotateY(-90deg) translateZ(${entry.contentRect.width / 4.05}px)`;
+                entry.target.querySelector(".right").style.transform = `rotateY(90deg) translateZ(${entry.contentRect.width / 4.05}px)`;
+                entry.target.querySelector(".top").style.transform = `rotateX(90deg) translateZ(${entry.contentRect.width / 4.05}px)`;
+                entry.target.querySelector(".bot").style.transform = `rotateX(-90deg) translateZ(${entry.contentRect.width / 4.05}px)`;
+            })
+        })
+
+        /* Observe */
+        observer.observe(document.querySelector(".cube-div"))
+    </script>
+
+
+    <!-- Mouseevents -->
+    <script>
+
+        /* Config */
+        let counter = 0;
+        const updateRate = 10;
+
+        /* HTML elements */
+        const cubeDiv = document.querySelector(".cube-div");
+        const cube = cubeDiv.querySelector(".cube")
+        const animationSwitch = document.querySelector("#animation-switch");
+        const mouseMoveSwitch = document.querySelector("#mouse-move-switch");
+
+
+        /* Add Eventlistener to start animation */
+        animationSwitch.addEventListener("change", function () {
+            console.log(animationSwitch.checked);
+            if (animationSwitch.checked) {
+                cube.style.animation = "rotate 10s linear infinite";
+            } else {
+                cube.style.animation = "none";
+            }
+        })
+
+        /* Mouse object */
+        const mouse = {
+            centerX: 0,
+            centerY: 0,
+            x: 0,
+            y: 0,
+            updatePosition: function (event) {
+                this.x = event.clientX - this.centerX;
+                this.y = -(event.clientY - this.centerY);
+            },
+            setCenter: function (element) {
+                this.centerX = element.offsetLeft + Math.floor(element.offsetWidth / 2);
+                this.centerY = element.offsetTop + Math.floor(element.offsetHeight / 2);
+            },
+        }
+        mouse.setCenter(cubeDiv);
+
+
+        /* Mouse enter */
+        function onMouseEnter(event) {
+            if (mouseMoveSwitch.checked) {
+                mouse.setCenter(cubeDiv);
+                cube.style.animation = "none"; // stop animation
+            }
+        };
+
+        /* Mouse leave */
+        function onMouseLeave() {
+            if (mouseMoveSwitch.checked) {
+                if (animationSwitch.checked) {
+                    window.setTimeout(() => cube.style.animation = "rotate 10s linear infinite", 400);
+                }
+            }
+        };
+
+        /* Mouse move */
+        function onMouseMove(event) {
+            /* Throttle update */
+            if (Number.isInteger(counter++ / updateRate)) {
+                if (mouseMoveSwitch.checked) {
+                    mouse.updatePosition(event);
+                    cube.style.transform =
+                        `rotateX(${(mouse.y / 10).toFixed(2)}deg) 
+                         rotateY(${(mouse.x / 10).toFixed(2)}deg) translateZ(10px)`;
+                }
+            }
+        };
+
+        /* Add Eventlisteners */
+        cubeDiv.addEventListener("mouseenter", onMouseEnter)
+        cubeDiv.addEventListener("mousemove", onMouseMove)
+        cubeDiv.addEventListener("mouseleave", onMouseLeave)
+
+    </script>
+
+</body>
+
+</html>
