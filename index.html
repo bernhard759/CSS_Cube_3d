@@ -10,7 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
-            box-sizing: border-box;
             --rotationXFrom: 0deg;
             --rotationYFrom: 0deg;
             --rotationXTo: 360deg;
@@ -28,6 +27,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             background-color: gainsboro;
             margin: auto;
+            overflow: hidden;
             max-width: 550px;
             max-height: 550px;
             min-width: 250px;
@@ -64,6 +64,9 @@
             position: absolute;
             width: 98.2%;
             height: 98.2%;
+            -webkit-backface-visibility: visible;
+            backface-visibility: visible;
+            cursor: default;
         }
 
         .side-content {
@@ -109,6 +112,22 @@
             }
         }
 
+        /* Coords div */
+        div.coords {
+            width: -moz-fit-content;
+            width: fit-content;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: x-small;
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 0.5vw;
+            border-radius: 4px;
+
+        }
+
         /* Form controls */
         .form-controls {
             position: relative;
@@ -147,7 +166,7 @@
                 </div>
             </div>
         </div>
-
+        <div class="coords"><span></span></div>
     </div>
     <div class="form-controls">
         <div class="form-check form-switch">
@@ -158,6 +177,14 @@
             <input class="form-check-input" type="checkbox" id="mouse-move-switch">
             <label class="form-check-label" for="mouse-move-switch">Enable Mousemove</label>
         </div>
+        <input class="form-check-input" type="checkbox" value="" id="backface" checked>
+        <label class="form-check-label" for="backface">
+            Backface visibility
+        </label>
+        <input class="form-check-input" type="checkbox" value="" id="coords" disabled>
+        <label class="form-check-label" for="coords">
+            Show Coords box
+        </label>
     </div>
 
     <!-- Resize Observer -->
@@ -191,17 +218,55 @@
         const cube = cubeDiv.querySelector(".cube")
         const animationSwitch = document.querySelector("#animation-switch");
         const mouseMoveSwitch = document.querySelector("#mouse-move-switch");
+        const backfaceCheckbox = document.querySelector("#backface");
+        const coordsCheckbox = document.querySelector("#coords");
+        const coordsDiv = document.querySelector("div.coords")
 
 
         /* Add Eventlistener to start animation */
         animationSwitch.addEventListener("change", function () {
-            console.log(animationSwitch.checked);
+            //console.log(animationSwitch.checked);
             if (animationSwitch.checked) {
                 cube.style.animation = "rotate 10s linear infinite";
+
             } else {
                 cube.style.animation = "none";
+
             }
         })
+
+
+        /* Add Eventlistener for mouse move */
+        mouseMoveSwitch.addEventListener("change", function () {
+            //console.log(animationSwitch.checked);
+            if (mouseMoveSwitch.checked) {
+                coordsCheckbox.disabled = false;
+            } else {
+                coordsCheckbox.disabled = true;
+            }
+        })
+
+
+        /* Add Eventlistener for backface visibility */
+        backfaceCheckbox.addEventListener("change", function () {
+            //console.log(backfaceCheckbox.checked);
+            cube.querySelectorAll(".side")?.forEach((side) => {
+                if (backfaceCheckbox.checked) {
+                    side.style.backfaceVisibility = "visible";
+                } else {
+                    side.style.backfaceVisibility = "hidden";
+                }
+            })
+        })
+
+
+        /* Add Eventlistener for coords div */
+        coordsCheckbox.addEventListener("change", function () {
+            if (!backfaceCheckbox.checked) {
+                coordsDiv.style.display = "none";
+            }
+        })
+
 
         /* Mouse object */
         const mouse = {
@@ -247,6 +312,8 @@
                     cube.style.transform =
                         `rotateX(${(mouse.y / 10).toFixed(2)}deg) 
                          rotateY(${(mouse.x / 10).toFixed(2)}deg) translateZ(10px)`;
+                    coordsDiv.firstChild.textContent = `${mouse.x}, ${mouse.y}`
+                    coordsDiv.style.display = "block";
                 }
             }
         };
