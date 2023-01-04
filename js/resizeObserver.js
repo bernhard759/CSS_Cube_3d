@@ -1,7 +1,7 @@
 (function () {
 
     const cubeDiv = document.querySelector("div.cube-div");
-    const translateRatio = cubeDiv.getBoundingClientRect().width / 138;
+    const translateRatio = 550 / 138;
     console.log(translateRatio)
     /* Resize Observer object */
 

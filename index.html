@@ -13,149 +13,150 @@
     <link rel="stylesheet" href="styles/controls.css">
     <link rel="stylesheet" href="styles/cubeDisplay.css">
     <!-- Scripts -->
-    <script src="js/eventListeners.js" defer></script>
     <script src="js/resizeObserver.js" defer></script>
-
+    <script src="js/eventListeners.js" defer></script>
+ 
 </head>
 
 <body>
     <h1>CSS and JS 3D Cube Animation</h1>
-    <br>
-    <!-- Cube -->
-    <div class="cube-div">
-        <div class="cube-container">
-            <div class="cube text">
-                <div class="side front six">
-                    <div class="side-content">
-                        <span class="text">Front</span>
-                        <span class="number">6</span>
-                        <div class="dice point-grid-6">
-                            <span class="point"></span>
-                            <span class="point"></span>
-                            <span class="point"></span>
-                            <span class="point"></span>
-                            <span class="point"></span>
-                            <span class="point"></span>
+    <!-- Flexbox -->
+    <div class="flexbox">
+        <!-- Cube -->
+        <div class="cube-div">
+            <div class="cube-container">
+                <div class="cube text">
+                    <div class="side front six">
+                        <div class="side-content">
+                            <span class="text">Front</span>
+                            <span class="number">6</span>
+                            <div class="dice point-grid-6">
+                                <span class="point"></span>
+                                <span class="point"></span>
+                                <span class="point"></span>
+                                <span class="point"></span>
+                                <span class="point"></span>
+                                <span class="point"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="side back one">
-                    <div class="side-content">
-                        <span class="text">Back</span>
-                        <span class="number">1</span>
-                        <div class="dice point-grid-1">
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="point"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
+                    <div class="side back one">
+                        <div class="side-content">
+                            <span class="text">Back</span>
+                            <span class="number">1</span>
+                            <div class="dice point-grid-1">
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="point"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="side left four">
-                    <div class="side-content">
-                        <span class="text">Left</span>
-                        <span class="number">4</span>
-                        <div class="dice point-grid-4">
-                            <span class="point"></span>
-                            <span class="point"></span>
-                            <span class="point"></span>
-                            <span class="point"></span>
+                    <div class="side left four">
+                        <div class="side-content">
+                            <span class="text">Left</span>
+                            <span class="number">4</span>
+                            <div class="dice point-grid-4">
+                                <span class="point"></span>
+                                <span class="point"></span>
+                                <span class="point"></span>
+                                <span class="point"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="side right three">
-                    <div class="side-content">
-                        <span class="text">Right</span>
-                        <span class="number">3</span>
-                        <div class="dice point-grid-3">
-                            <span class="point"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="point"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="point"></span>
+                    <div class="side right three">
+                        <div class="side-content">
+                            <span class="text">Right</span>
+                            <span class="number">3</span>
+                            <div class="dice point-grid-3">
+                                <span class="point"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="point"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="point"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="side top five">
-                    <div class="side-content">
-                        <span class="text">Top</span>
-                        <span class="number">5</span>
-                        <div class="dice point-grid-5">
-                            <span class="point"></span>
-                            <span class="empty"></span>
-                            <span class="point"></span>
-                            <span class="empty"></span>
-                            <span class="point"></span>
-                            <span class="empty"></span>
-                            <span class="point"></span>
-                            <span class="empty"></span>
-                            <span class="point"></span>
+                    <div class="side top five">
+                        <div class="side-content">
+                            <span class="text">Top</span>
+                            <span class="number">5</span>
+                            <div class="dice point-grid-5">
+                                <span class="point"></span>
+                                <span class="empty"></span>
+                                <span class="point"></span>
+                                <span class="empty"></span>
+                                <span class="point"></span>
+                                <span class="empty"></span>
+                                <span class="point"></span>
+                                <span class="empty"></span>
+                                <span class="point"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="side bot two">
-                    <div class="side-content">
-                        <span class="text">Bottom</span>
-                        <span class="number">2</span>
-                        <div class="dice point-grid-2">
-                            <span class="point"></span>
-                            <span class="empty"></span>
-                            <span class="empty"></span>
-                            <span class="point"></span>
+                    <div class="side bot two">
+                        <div class="side-content">
+                            <span class="text">Bottom</span>
+                            <span class="number">2</span>
+                            <div class="dice point-grid-2">
+                                <span class="point"></span>
+                                <span class="empty"></span>
+                                <span class="empty"></span>
+                                <span class="point"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="coords"><span></span></div>
         </div>
-        <div class="coords"><span></span></div>
-    </div>
-    <div class="form-controls">
-        <hr>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="animation-switch">
-            <label class="form-check-label" for="animation-switch">Run animation</label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="mouse-move-switch">
-            <label class="form-check-label" for="mouse-move-switch">Enable Mousemove</label>
-        </div>
-        <hr>
-        <input class="form-check-input" type="checkbox" value="" id="backface" checked>
-        <label class="form-check-label" for="backface">
-            Backface visibility
-        </label><br>
-        <input class="form-check-input" type="checkbox" value="" id="coords" disabled>
-        <label class="form-check-label" for="coords">
-            Show Coords box
-        </label>
-        <hr>
-        <h6>Cube style</h6>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="radio-cube" id="option-text" checked>
-            <label class="form-check-label" for="option-text">
-                Default radio
+        <div class="form-controls">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="animation-switch">
+                <label class="form-check-label" for="animation-switch">Run animation</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="mouse-move-switch">
+                <label class="form-check-label" for="mouse-move-switch">Enable Mousemove</label>
+            </div>
+            <hr>
+            <input class="form-check-input" type="checkbox" value="" id="backface" checked>
+            <label class="form-check-label" for="backface">
+                Backface visibility
+            </label><br>
+            <input class="form-check-input" type="checkbox" value="" id="coords" disabled>
+            <label class="form-check-label" for="coords">
+                Show Coords box
             </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="radio-cube" id="option-numbers">
-            <label class="form-check-label" for="option-numbers">
-                Default checked radio
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="radio-cube" id="option-dice">
-            <label class="form-check-label" for="option-dice">
-                Default checked radio
-            </label>
+            <hr>
+            <h6>Cube style</h6>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radio-cube" id="option-text" checked>
+                <label class="form-check-label" for="option-text">
+                    Sides with text
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radio-cube" id="option-numbers">
+                <label class="form-check-label" for="option-numbers">
+                    Colorful sides with numbers
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radio-cube" id="option-dice">
+                <label class="form-check-label" for="option-dice">
+                    Game dice
+                </label>
+            </div>
         </div>
     </div>
 

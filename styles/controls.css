@@ -16,7 +16,6 @@ div.coords {
 /* Form controls */
 .form-controls {
   position: relative;
-  margin: auto;
   min-width: 250px;
   max-width: 550px;
   margin-top: 1rem;

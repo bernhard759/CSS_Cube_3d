@@ -10,12 +10,22 @@ div {
   box-sizing: content-box;
 }
 
+.flexbox {
+  margin: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  height: 580px;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
 .cube-div {
+  flex-grow: 1;
   position: relative;
   border-radius: 6px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   background-color: gainsboro;
-  margin: auto;
   overflow: hidden;
   max-width: 550px;
   max-height: 550px;
