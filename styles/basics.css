@@ -74,32 +74,10 @@ div {
   height: 100%;
   width: 100%;
   padding: 1vmin;
-  box-sizing: border-box;
 }
 
-.front {
-  transform: translateZ(138px);
-}
-
-.back {
-  transform: rotateX(180deg) translateZ(138px);
-}
-
-.left {
-  transform: rotateY(-90deg) translateZ(138px);
-}
-
-.right {
-  transform: rotateY(90deg) translateZ(138px);
-}
-
-.top {
-  transform: rotateX(90deg) translateZ(138px);
-}
-
-.bot {
-  transform: rotateX(-90deg) translateZ(138px);
-}
+/* CSS Rotation and translateZ on the cube sides is done in JS */
+/* CSS translateZ should be half the cube size */
 
 /* Cube animation */
 @keyframes rotate {
