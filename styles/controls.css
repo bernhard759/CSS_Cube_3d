@@ -1,0 +1,24 @@
+/* Coords div */
+div.coords {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: x-small;
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.5vw;
+  border-radius: 4px;
+}
+
+/* Form controls */
+.form-controls {
+  position: relative;
+  margin: auto;
+  min-width: 250px;
+  max-width: 550px;
+  margin-top: 1rem;
+  padding: 0.5rem;
+}

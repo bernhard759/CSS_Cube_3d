@@ -1,0 +1,127 @@
+/* Side contents spans*/
+.dice span {
+  width: min(2.5em, 7.5vmin);
+  height: min(2.5em, 7.5vmin);
+  margin: auto;
+}
+
+span.point {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 100%;
+}
+
+span.empty {
+  background-color: transparent;
+}
+
+/* Dice grids */
+div.side-content div {
+  width: 100%;
+  height: 100%;
+}
+
+.dice.point-grid-1 {
+  display: grid;
+  margin: auto;
+  gap: 1vmin;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.dice.point-grid-2 {
+  display: grid;
+  margin: auto;
+  gap: 1vmin;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.dice.point-grid-3 {
+  display: grid;
+  margin: auto;
+  gap: 1vmin;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.dice.point-grid-4 {
+  display: grid;
+  margin: auto;
+  gap: 1vmin;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.dice.point-grid-5 {
+  display: grid;
+  margin: auto;
+  gap: 1vmin;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.dice.point-grid-6 {
+  display: grid;
+  margin: 1vmin;
+  gap: 1vmin;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+/* Display of side contents */
+.side-content span.text,
+.side-content span.number,
+.side-content div.dice {
+  display: none;
+}
+
+/* Text */
+div.cube.text .side {
+  background: rgba(30, 144, 255, 0.4);
+}
+
+div.cube.text .side-content span.text {
+  display: block;
+  font-size: min(5vw, 2em);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* Numbers */
+div.cube.numbers .side-content span.number {
+  display: block;
+  font-size: min(25vw, 4em);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+div.cube.numbers .side-content:nth-child(1) {
+  background: rgba(34, 139, 34, 0.5);
+}
+
+div.cube.numbers .side:nth-child(2) .side-content {
+  background: rgba(30, 144, 255, 0.5);
+}
+
+div.cube.numbers .side:nth-child(3) .side-content {
+  background: rgba(102, 51, 153, 0.5);
+}
+
+div.cube.numbers .side:nth-child(4) .side-content {
+  background: rgba(218, 165, 32, 0.5);
+}
+
+div.cube.numbers .side:nth-child(5) .side-content {
+  background: rgba(255, 140, 0, 0.5);
+}
+
+div.cube.numbers .side:nth-child(6) .side-content {
+  background: rgba(169, 169, 169, 0.5);
+}
+
+/* Dice */
+div.cube.dice .side {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+div.cube.dice .side-content div.dice {
+  display: grid;
+}
