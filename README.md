@@ -1,5 +1,3 @@
 ### CSS and JS Cube 3D
 This is a 3D Cube made with CSS and animated with CSS and some JavaScript. The Box containing the cube has a resize observer attachted to it and changes the cubes `translateZ`.
 You can start an animation that rotates the cube in X and Y-direction. You can also enable Mousemove, which lets you move the cube by moving the computer mouse over the cube div.
-
-The second cube rotates when the page is scrolled. The basis for the second project is a codepen from Scott Kellum.
