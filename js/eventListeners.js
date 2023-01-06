@@ -4,6 +4,7 @@
     posY = 0;
   let ticking = false;
   let counter = 0;
+  let pointerMoveEnabled = false;
 
   /* HTML elements */
   const cubeDiv = document.querySelector(".cube-div");
@@ -16,7 +17,9 @@
   const radioText = document.querySelector("div.form-check #option-text");
   const radioNumbers = document.querySelector("div.form-check #option-numbers");
   const radioDice = document.querySelector("div.form-check #option-dice");
-  const template = document.querySelector("template#orientation-checkbox-template");
+  const template = document.querySelector(
+    "template#orientation-checkbox-template"
+  );
   const checkboxesDiv = document.querySelector("div.checkboxes");
 
   /* Create pointer position point */
@@ -50,11 +53,18 @@
 
   /* Add Eventlistener for pointer move */
   pointerMoveSwitch.addEventListener("change", function () {
-    //console.log(animationSwitch.checked);
     if (pointerMoveSwitch.checked) {
+      pointerMoveEnabled = true;
       coordsCheckbox.disabled = false;
+      if (checkboxesDiv.querySelector("input#orientation")) {
+        checkboxesDiv.querySelector("input#orientation").disabled = true;
+      }
     } else {
+      pointerMoveEnabled = false;
       coordsCheckbox.disabled = true;
+      if (checkboxesDiv.querySelector("input#orientation")) {
+        checkboxesDiv.querySelector("input#orientation").disabled = false;
+      }
     }
   });
 
@@ -162,26 +172,35 @@
   cubeDiv.addEventListener("pointermove", onPointerMove);
   cubeDiv.addEventListener("pointerleave", onPointerLeave);
 
-
-  /* Device orientation eventlistener */
-  if (window.DeviceOrientationEvent && "ontouchstart" in document.documentElement) {
-
+  /* Device orientation eventlistener (only on mobile devices)*/
+  if (window.DeviceOrientationEvent && "ontouchstart" in window) {
+    /* Clone template and append it to dom */
     const firstClone = template.content.cloneNode(true);
     console.log(template, firstClone);
     checkboxesDiv.appendChild(firstClone);
 
+    /* Add eventlistener for checkbox change */
+    checkboxesDiv
+      .querySelector("input#orientation")
+      .addEventListener("change", function (e) {
+        if (!e.target.checked) {
+          cube.style.transform = "translateZ(10px)";
+        }
+      });
+
+    /* Add eventlistener for device orientation change event */
     window.addEventListener(
       "deviceorientation",
       (event) => {
-        if (checkboxesDiv.querySelector("input#orientation").checked) {
-        cube.style.transform = `rotateX(${-event.beta}deg) 
+        if (
+          checkboxesDiv.querySelector("input#orientation").checked &&
+          !pointerMoveEnabled
+        ) {
+          cube.style.transform = `rotateX(${-event.beta}deg) 
         rotateY(${event.gamma}deg) translateZ(10px)`;
         }
       },
       true
     );
-
-   
   }
-
 })();
