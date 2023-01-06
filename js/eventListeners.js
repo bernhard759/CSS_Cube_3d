@@ -160,28 +160,26 @@
   cubeDiv.addEventListener("pointermove", onPointerMove);
   cubeDiv.addEventListener("pointerleave", onPointerLeave);
 
-  window.addEventListener("deviceorientation", (event) => {
-    const rotateDegrees = event.alpha; // alpha: rotation around z-axis
-    const leftToRight = event.gamma; // gamma: left to right
-    const frontToBack = event.beta; // beta: front back motion
-    console.log(frontToBack, leftToRight, rotateDegrees);
-  });
+const orientationVals = { leftToRight: 0, rotateZ: 0}
 
+
+  /* Device orientation eventlistener */
   if (window.DeviceOrientationEvent) {
     window.addEventListener(
       "deviceorientation",
       (event) => {
+        
         const rotateDegrees = event.alpha; // alpha: rotation around z-axis
         const leftToRight = event.gamma; // gamma: left to right
         const frontToBack = event.beta; // beta: front back motion
 
-        handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+        console.log(frontToBack, leftToRight, rotateDegrees);
+
+        cube.style.transform = `rotateX(${orientationVals.rotateZ}deg) 
+        rotateY(${orientationVals.leftToRight}deg) translateZ(10px)`;
       },
       true
     );
   }
 
-  const handleOrientationEvent = (frontToBack, leftToRight, rotateDegrees) => {
-    console.log(frontToBack, leftToRight, rotateDegrees);
-  };
 })();
