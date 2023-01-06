@@ -34,6 +34,8 @@ div {
   min-height: 250px;
   aspect-ratio: 1;
   touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .cube-container {

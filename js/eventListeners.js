@@ -83,7 +83,7 @@
     x: 0,
     y: 0,
     updatePosition: function (event) {
-      console.log(event)
+      //console.log(event)
       this.x = event.clientX - this.centerX;
       this.y = -(event.clientY - this.centerY);
     },
@@ -98,19 +98,21 @@
   function onPointerEnter(event) {
     if (pointerMoveSwitch.checked) {
       pointer.setCenter(cubeDiv);
+      pointer.updatePosition(event);
+      pointerPoint.style.transform = `translate(${pointer.x}px, ${-1 * pointer.y}px)`;
+      pointerPoint.style.display = "block";
       cube.style.animation = "none"; // stop animation
     }
   }
 
   /** Pointer move */
   function onPointerMove(event) {
-    console.log(event);
+    //console.log(event);
     pointer.updatePosition(event);
     posX = pointer.x;
     posY = pointer.y;
     if (!ticking && pointerMoveSwitch.checked) {
       window.requestAnimationFrame(() => {
-        pointerPoint.style.display = "block";
         pointerPoint.style.transform = `translate(${posX}px, ${-1 * posY}px)`;
         ticking = false;
       });
