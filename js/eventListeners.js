@@ -162,16 +162,18 @@
   cubeDiv.addEventListener("pointermove", onPointerMove);
   cubeDiv.addEventListener("pointerleave", onPointerLeave);
 
+
   /* Device orientation eventlistener */
-  if (window.DeviceOrientationEvent) {
+  if (window.DeviceOrientationEvent && "ontouchstart" in document.documentElement) {
 
     const firstClone = template.content.cloneNode(true);
+    console.log(template, firstClone);
     checkboxesDiv.appendChild(firstClone);
 
     window.addEventListener(
       "deviceorientation",
       (event) => {
-        if (firstClone.querySelector("input").checked) {
+        if (checkboxesDiv.querySelector("input#orientation").checked) {
         cube.style.transform = `rotateX(${-event.beta}deg) 
         rotateY(${event.gamma}deg) translateZ(10px)`;
         }
