@@ -177,11 +177,11 @@ const orientationVals = { leftToRight: 0, rotateZ: 0}
         orientationVals.leftToRight = event.gamma;
         orientationVals.rotateZ = event.alpha;
 
-        console.log(`rotateX(${(event.alpha*2).toFixed(0)}deg) 
-        rotateY(${(event.gamma*2).toFixed(0)}deg) translateZ(10px)`);
+        console.log(`rotateX(${Math.round(event.alpha*2)}deg) 
+        rotateY(${Math.round(event.gamma*2)}deg) translateZ(10px)`);
 
-        cube.style.transform = `rotateX(${(event.alpha*2).toFixed(0)}deg) 
-        rotateY(${(event.gamma*2).toFixed(0)}deg) translateZ(10px)`;
+        cube.style.transform = `rotateX(${Math.round(event.alpha*2)}deg) 
+        rotateY(${Math.round(event.gamma*2)}deg) translateZ(10px)`;
       },
       true
     );
