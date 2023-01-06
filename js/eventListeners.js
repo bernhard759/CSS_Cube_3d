@@ -160,28 +160,13 @@
   cubeDiv.addEventListener("pointermove", onPointerMove);
   cubeDiv.addEventListener("pointerleave", onPointerLeave);
 
-const orientationVals = { leftToRight: 0, rotateZ: 0}
-
-
   /* Device orientation eventlistener */
   if (window.DeviceOrientationEvent) {
     window.addEventListener(
       "deviceorientation",
       (event) => {
-
-        const rotateDegrees = event.alpha; // alpha: rotation around z-axis
-        const leftToRight = event.gamma; // gamma: left to right
-        const frontToBack = event.beta; // beta: front back motion
-
-        //console.log(frontToBack, leftToRight, rotateDegrees);
-        orientationVals.leftToRight = event.gamma;
-        orientationVals.rotateZ = event.alpha;
-
-        console.log(`rotateX(${Math.round(event.alpha*2)}deg) 
-        rotateY(${Math.round(event.gamma*2)}deg) translateZ(10px)`);
-
-        cube.style.transform = `rotateX(${Math.round(event.alpha*2)}deg) 
-        rotateY(${Math.round(event.gamma*2)}deg) translateZ(10px)`;
+        cube.style.transform = `rotateX(${Math.round(event.beta)}deg) 
+        rotateY(${Math.round(event.alpha)}deg) translateZ(10px)`;
       },
       true
     );
