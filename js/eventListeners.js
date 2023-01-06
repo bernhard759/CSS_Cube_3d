@@ -160,15 +160,18 @@
   cubeDiv.addEventListener("pointermove", onPointerMove);
   cubeDiv.addEventListener("pointerleave", onPointerLeave);
 
-  try {
-    const gyroscope = new Gyroscope({ frequency: 60 });
-    gyroscope?.addEventListener("reading", (e) => {
-      console.log(`Angular velocity along the X-axis ${gyroscope.x}`);
-      console.log(`Angular velocity along the Y-axis ${gyroscope.y}`);
-      console.log(`Angular velocity along the Z-axis ${gyroscope.z}`);
-    });
-    gyroscope?.start();
-  } catch {
-    console.warn(`${window.navigator.appCodeName} browser not support the gyroscope api`);
-  }
+  if (window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", (event) => {
+      const rotateDegrees = event.alpha; // alpha: rotation around z-axis
+      const leftToRight = event.gamma; // gamma: left to right
+      const frontToBack = event.beta; // beta: front back motion
+ 
+      handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+    }, true);
+ }
+ 
+ const handleOrientationEvent = (frontToBack, leftToRight, rotateDegrees) => {
+   console.log(frontToBack, leftToRight, rotateDegrees);
+ };
+ 
 })();
