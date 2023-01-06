@@ -83,12 +83,13 @@
     x: 0,
     y: 0,
     updatePosition: function (event) {
+      console.log(event)
       this.x = event.clientX - this.centerX;
       this.y = -(event.clientY - this.centerY);
     },
     setCenter: function (element) {
-      this.centerX = element.offsetLeft + Math.floor(element.offsetWidth / 2);
-      this.centerY = element.offsetTop + Math.floor(element.offsetHeight / 2);
+      this.centerX = element.getBoundingClientRect().left + Math.floor(element.offsetWidth / 2);
+      this.centerY = element.getBoundingClientRect().top + Math.floor(element.offsetHeight / 2);
     },
   };
   pointer.setCenter(cubeDiv);
