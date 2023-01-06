@@ -177,8 +177,8 @@ const orientationVals = { leftToRight: 0, rotateZ: 0}
         orientationVals.leftToRight = event.gamma;
         orientationVals.rotateZ = event.alpha;
 
-        cube.style.transform = `rotateX(${orientationVals.rotateZ}deg) 
-        rotateY(${orientationVals.leftToRight}deg) translateZ(10px)`;
+        cube.style.transform = `rotateX(${(event.alpha*2).toFixed(0)}deg) 
+        rotateY(${(event.gamma*2).toFixed(0)}deg) translateZ(10px)`;
       },
       true
     );
