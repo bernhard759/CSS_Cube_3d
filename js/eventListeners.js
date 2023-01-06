@@ -168,12 +168,14 @@ const orientationVals = { leftToRight: 0, rotateZ: 0}
     window.addEventListener(
       "deviceorientation",
       (event) => {
-        
+
         const rotateDegrees = event.alpha; // alpha: rotation around z-axis
         const leftToRight = event.gamma; // gamma: left to right
         const frontToBack = event.beta; // beta: front back motion
 
         console.log(frontToBack, leftToRight, rotateDegrees);
+        orientationVals.leftToRight = event.gamma;
+        orientationVals.rotateZ = event.alpha;
 
         cube.style.transform = `rotateX(${orientationVals.rotateZ}deg) 
         rotateY(${orientationVals.leftToRight}deg) translateZ(10px)`;
