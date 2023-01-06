@@ -197,8 +197,8 @@
           checkboxesDiv.querySelector("input#orientation").checked &&
           !pointerMoveEnabled
         ) {
-          cube.style.transform = `rotateX(${(-event.beta)*1.5}deg) 
-        rotateY(${event.gamma*1.5}deg) translateZ(10px)`;
+          cube.style.transform = `rotateX(${-event.beta}deg) 
+        rotateY(${event.gamma}deg) translateZ(10px)`;
         }
       },
       true
