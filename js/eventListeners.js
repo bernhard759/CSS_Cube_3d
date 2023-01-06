@@ -173,9 +173,12 @@ const orientationVals = { leftToRight: 0, rotateZ: 0}
         const leftToRight = event.gamma; // gamma: left to right
         const frontToBack = event.beta; // beta: front back motion
 
-        console.log(frontToBack, leftToRight, rotateDegrees);
+        //console.log(frontToBack, leftToRight, rotateDegrees);
         orientationVals.leftToRight = event.gamma;
         orientationVals.rotateZ = event.alpha;
+
+        console.log(`rotateX(${(event.alpha*2).toFixed(0)}deg) 
+        rotateY(${(event.gamma*2).toFixed(0)}deg) translateZ(10px)`);
 
         cube.style.transform = `rotateX(${(event.alpha*2).toFixed(0)}deg) 
         rotateY(${(event.gamma*2).toFixed(0)}deg) translateZ(10px)`;
