@@ -117,6 +117,7 @@
       ticking = true;
     }
     if (counter++ % 8 == 0) {
+      pointer.setCenter(cubeDiv);
       changeCubeTranslate(posX, posY);
     }
   }
