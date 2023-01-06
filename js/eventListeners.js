@@ -3,8 +3,9 @@
   let posX,
     posY = 0;
   let ticking = false;
-  let counter = 0;
+  let counterPointermove = 0;
   let pointerMoveEnabled = false;
+  let counterDeviceOrientation = 0;
 
   /* HTML elements */
   const cubeDiv = document.querySelector(".cube-div");
@@ -135,7 +136,7 @@
       });
       ticking = true;
     }
-    if (counter++ % 8 == 0) {
+    if (counterPointermove++ % 8 == 0) {
       pointer.setCenter(cubeDiv);
       changeCubeTranslate(posX, posY);
     }
@@ -194,10 +195,10 @@
       (event) => {
         if (
           checkboxesDiv.querySelector("input#orientation").checked &&
-          !pointerMoveEnabled
+          !pointerMoveEnabled && counterDeviceOrientation++ % 8 == 0
         ) {
-          cube.style.transform = `rotateX(${-event.beta}deg) 
-        rotateY(${event.gamma}deg) translateZ(10px)`;
+          cube.style.transform = `rotateX(${(-event.beta)*1.5}deg) 
+        rotateY(${event.gamma*1.5}deg) translateZ(10px)`;
         }
       },
       true
