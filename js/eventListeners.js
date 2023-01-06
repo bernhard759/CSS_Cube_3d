@@ -176,7 +176,7 @@
   if (window.DeviceOrientationEvent && "ontouchstart" in window) {
     /* Clone template and append it to dom */
     const firstClone = template.content.cloneNode(true);
-    console.log(template, firstClone);
+    //console.log(template, firstClone);
     checkboxesDiv.appendChild(firstClone);
 
     /* Add eventlistener for checkbox change */
@@ -192,11 +192,12 @@
     window.addEventListener(
       "deviceorientation",
       (event) => {
+        console.log(event.beta);
         if (
           checkboxesDiv.querySelector("input#orientation").checked &&
           !pointerMoveEnabled
         ) {
-          cube.style.transform = `rotateX(${-event.beta}deg) 
+          cube.style.transform = `rotateX(${-(event.beta-10)}deg) 
         rotateY(${event.gamma}deg) translateZ(10px)`;
         }
       },
