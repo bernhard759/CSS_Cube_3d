@@ -198,8 +198,8 @@
           checkboxesDiv.querySelector("input#orientation").checked &&
           !pointerMoveEnabled && counterDeviceOrientation++ % 10 == 0
         ) {
-          cube.style.transform = `rotateX(${-event.beta}deg) 
-        rotateY(${event.gamma}deg) translateZ(10px)`;
+          cube.style.transform = `rotateX(${-Math.round(event.beta)}deg) 
+        rotateY(${Math.round(event.gamma)}deg) translateZ(10px)`;
         }
       },
       true
