@@ -144,6 +144,7 @@
 
   /** Pointer leave */
   function onPointerLeave() {
+    counterPointermove = 0; // reset counter
     if (pointerMoveSwitch.checked) {
       pointerPoint.style.display = "none";
       cube.style.transform = "translateZ(0px)";
