@@ -15,7 +15,7 @@
     <!-- Scripts -->
     <script src="js/resizeObserver.js" defer></script>
     <script src="js/eventListeners.js" defer></script>
- 
+
 </head>
 
 <body>
@@ -130,18 +130,21 @@
                 <label class="form-check-label" for="pointer-move-switch">Enable Pointermove</label>
             </div>
             <hr>
-            <input class="form-check-input" type="checkbox" value="" id="backface" checked autocomplete='off'>
-            <label class="form-check-label" for="backface">
-                Backface visibility
-            </label><br>
-            <input class="form-check-input" type="checkbox" value="" id="coords" disabled autocomplete='off'>
-            <label class="form-check-label" for="coords">
-                Show Coords box
-            </label>
+            <div class="checkboxes">
+                <input class="form-check-input" type="checkbox" value="" id="backface" checked autocomplete='off'>
+                <label class="form-check-label" for="backface">
+                    Backface visibility
+                </label><br>
+                <input class="form-check-input" type="checkbox" value="" id="coords" disabled autocomplete='off'>
+                <label class="form-check-label" for="coords">
+                    Show Coords box
+                </label>
+            </div>
             <hr>
             <div class="form-header-2">Cube style</div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radio-cube" id="option-text" checked autocomplete='off'>
+                <input class="form-check-input" type="radio" name="radio-cube" id="option-text" checked
+                    autocomplete='off'>
                 <label class="form-check-label" for="option-text">
                     Sides with text
                 </label>
@@ -160,6 +163,15 @@
             </div>
         </div>
     </div>
+
+    <!-- Template for device orientation checkbox -->
+    <template id="orientation-checkbox-template">
+        <br>
+        <input class="form-check-input" type="checkbox" value="" id="orientation" autocomplete='off'>
+        <label class="form-check-label" for="orientation">
+            Device orientation
+        </label>
+    </template>
 
 </body>
 
