@@ -1,19 +1,27 @@
 (function () {
-  /* Config */
+  /* Animation frame config */
+  let posX,
+    posY = 0;
+  let ticking = false;
   let counter = 0;
-  const updateRate = 10;
 
   /* HTML elements */
   const cubeDiv = document.querySelector(".cube-div");
   const cube = cubeDiv.querySelector(".cube");
   const animationSwitch = document.querySelector("#animation-switch");
-  const mouseMoveSwitch = document.querySelector("#mouse-move-switch");
+  const pointerMoveSwitch = document.querySelector("#pointer-move-switch");
   const backfaceCheckbox = document.querySelector("#backface");
   const coordsCheckbox = document.querySelector("#coords");
   const coordsDiv = document.querySelector("div.coords");
   const radioText = document.querySelector("div.form-check #option-text");
   const radioNumbers = document.querySelector("div.form-check #option-numbers");
   const radioDice = document.querySelector("div.form-check #option-dice");
+
+  /* Create pointer position point */
+  const pointerPoint = document.createElement("span");
+  pointerPoint.style.cssText +=
+    `display: none; position: absolute; background-color: firebrick; border-radius: 100%; width: 0.5em; height: 0.5em; top: calc(50% - 0.25em); left: calc(50% - 0.25em);`;
+  cubeDiv.appendChild(pointerPoint);
 
   /* Radiobuttons Eventlisteners */
   radioText?.addEventListener("change", function (e) {
@@ -39,10 +47,10 @@
     }
   });
 
-  /* Add Eventlistener for mouse move */
-  mouseMoveSwitch.addEventListener("change", function () {
+  /* Add Eventlistener for pointer move */
+  pointerMoveSwitch.addEventListener("change", function () {
     //console.log(animationSwitch.checked);
-    if (mouseMoveSwitch.checked) {
+    if (pointerMoveSwitch.checked) {
       coordsCheckbox.disabled = false;
     } else {
       coordsCheckbox.disabled = true;
@@ -68,8 +76,8 @@
     }
   });
 
-  /* Mouse object */
-  const mouse = {
+  /* Pointer object */
+  const pointer = {
     centerX: 0,
     centerY: 0,
     x: 0,
@@ -83,20 +91,39 @@
       this.centerY = element.offsetTop + Math.floor(element.offsetHeight / 2);
     },
   };
-  mouse.setCenter(cubeDiv);
+  pointer.setCenter(cubeDiv);
 
-  /* Mouse enter */
-  function onMouseEnter(event) {
-    if (mouseMoveSwitch.checked) {
-      mouse.setCenter(cubeDiv);
+  /** Pointer enter */
+  function onPointerEnter(event) {
+    if (pointerMoveSwitch.checked) {
+      pointer.setCenter(cubeDiv);
       cube.style.animation = "none"; // stop animation
     }
   }
 
-  /* Mouse leave */
-  function onMouseLeave() {
-    if (mouseMoveSwitch.checked) {
-      cube.style.transform = "translateZ(10px)";
+  /** Pointer move */
+  function onPointerMove(event) {
+    pointer.updatePosition(event);
+    posX = lastKnownScrollPosition = pointer.x;
+    posY = lastKnownScrollPosition = pointer.y;
+    if (!ticking && pointerMoveSwitch.checked) {
+      window.requestAnimationFrame(() => {
+        pointerPoint.style.display = "block";
+        pointerPoint.style.transform = `translate(${posX}px, ${-1 * posY}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+    if (counter++ % 8 == 0) {
+      changeCubeTranslate(posX, posY);
+    }
+  }
+
+  /** Pointer leave */
+  function onPointerLeave() {
+    if (pointerMoveSwitch.checked) {
+      pointerPoint.style.display = "none";
+      cube.style.transform = "translateZ(0px)";
       if (animationSwitch.checked) {
         window.setTimeout(
           () => (cube.style.animation = "rotate 10s linear infinite"),
@@ -106,24 +133,20 @@
     }
   }
 
-  /* Mouse move */
-  function onMouseMove(event) {
-    /* Throttle update */
-    if (Number.isInteger(counter++ / updateRate)) {
-      if (mouseMoveSwitch.checked) {
-        mouse.updatePosition(event);
-        cube.style.transform = `rotateX(${(mouse.y / 10).toFixed(2)}deg) 
-                 rotateY(${(mouse.x / 10).toFixed(2)}deg) translateZ(10px)`;
-        if (coordsCheckbox.checked) {
-          coordsDiv.firstChild.textContent = `${mouse.x}, ${mouse.y}`;
-          coordsDiv.style.display = "block";
-        }
+  /** Change cube trsnslation values */
+  function changeCubeTranslate(x, y) {
+    if (pointerMoveSwitch.checked) {
+      cube.style.transform = `rotateX(${(y / 10).toFixed(2)}deg) 
+             rotateY(${(x / 10).toFixed(2)}deg) translateZ(10px)`;
+      if (coordsCheckbox.checked) {
+        coordsDiv.firstChild.textContent = `${x.toFixed(0)}, ${y.toFixed(0)}`;
+        coordsDiv.style.display = "block";
       }
     }
   }
 
   /* Add Eventlisteners */
-  cubeDiv.addEventListener("mouseenter", onMouseEnter);
-  cubeDiv.addEventListener("mousemove", onMouseMove);
-  cubeDiv.addEventListener("mouseleave", onMouseLeave);
+  cubeDiv.addEventListener("pointerenter", onPointerEnter);
+  cubeDiv.addEventListener("pointermove", onPointerMove);
+  cubeDiv.addEventListener("pointerleave", onPointerLeave);
 })();

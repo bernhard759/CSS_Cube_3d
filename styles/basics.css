@@ -3,6 +3,7 @@
   --rotationYFrom: 0deg;
   --rotationXTo: 360deg;
   --rotationYTo: 360deg;
+  --cubeDivColor: #E0E0E0;
   margin: 1rem;
 }
 
@@ -24,14 +25,15 @@ div {
   flex-grow: 1;
   position: relative;
   border-radius: 6px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  background-color: gainsboro;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.12);
+  background-color: var(--cubeDivColor);
   overflow: hidden;
   max-width: 550px;
   max-height: 550px;
   min-width: 250px;
   min-height: 250px;
   aspect-ratio: 1;
+  touch-action: none;
 }
 
 .cube-container {
@@ -73,7 +75,6 @@ div {
   justify-content: center;
   height: 100%;
   width: 100%;
-  padding: 1vmin;
 }
 
 /* CSS Rotation and translateZ on the cube sides is done in JS */

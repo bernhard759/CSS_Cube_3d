@@ -20,4 +20,15 @@ div.coords {
   max-width: 550px;
   margin-top: 1rem;
   padding: 0.5rem;
+  font-size: clamp(18px, 2vw, 28px);
+}
+
+.form-controls .form-header-1 {
+  font-size: clamp(22px, 2.6vw, 32px);
+  padding: 0.5em 0.2em;
+}
+
+.form-controls .form-header-2 {
+  font-size: clamp(20px, 2.2vw, 30px);
+  padding: 0.2em 0.2em;
 }
