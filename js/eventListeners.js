@@ -103,9 +103,10 @@
 
   /** Pointer move */
   function onPointerMove(event) {
+    console.log(event);
     pointer.updatePosition(event);
-    posX = lastKnownScrollPosition = pointer.x;
-    posY = lastKnownScrollPosition = pointer.y;
+    posX = pointer.x;
+    posY = pointer.y;
     if (!ticking && pointerMoveSwitch.checked) {
       window.requestAnimationFrame(() => {
         pointerPoint.style.display = "block";
@@ -133,7 +134,7 @@
     }
   }
 
-  /** Change cube trsnslation values */
+  /** Change cube translation values */
   function changeCubeTranslate(x, y) {
     if (pointerMoveSwitch.checked) {
       cube.style.transform = `rotateX(${(y / 10).toFixed(2)}deg) 
