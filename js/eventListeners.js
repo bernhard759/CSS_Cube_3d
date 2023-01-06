@@ -5,7 +5,6 @@
   let ticking = false;
   let counterPointermove = 0;
   let pointerMoveEnabled = false;
-  let counterDeviceOrientation = 0;
 
   /* HTML elements */
   const cubeDiv = document.querySelector(".cube-div");
@@ -196,7 +195,7 @@
       (event) => {
         if (
           checkboxesDiv.querySelector("input#orientation").checked &&
-          !pointerMoveEnabled && counterDeviceOrientation++ % 8 == 0
+          !pointerMoveEnabled
         ) {
           cube.style.transform = `rotateX(${(-event.beta)*1.5}deg) 
         rotateY(${event.gamma*1.5}deg) translateZ(10px)`;
