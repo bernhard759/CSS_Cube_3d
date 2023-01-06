@@ -19,8 +19,7 @@
 
   /* Create pointer position point */
   const pointerPoint = document.createElement("span");
-  pointerPoint.style.cssText +=
-    `display: none; position: absolute; background-color: firebrick; border-radius: 100%; width: 0.5em; height: 0.5em; top: calc(50% - 0.25em); left: calc(50% - 0.25em);`;
+  pointerPoint.style.cssText += `display: none; position: absolute; background-color: firebrick; border-radius: 100%; width: 0.5em; height: 0.5em; top: calc(50% - 0.25em); left: calc(50% - 0.25em);`;
   cubeDiv.appendChild(pointerPoint);
 
   /* Radiobuttons Eventlisteners */
@@ -88,8 +87,12 @@
       this.y = -(event.clientY - this.centerY);
     },
     setCenter: function (element) {
-      this.centerX = element.getBoundingClientRect().left + Math.floor(element.offsetWidth / 2);
-      this.centerY = element.getBoundingClientRect().top + Math.floor(element.offsetHeight / 2);
+      this.centerX =
+        element.getBoundingClientRect().left +
+        Math.floor(element.offsetWidth / 2);
+      this.centerY =
+        element.getBoundingClientRect().top +
+        Math.floor(element.offsetHeight / 2);
     },
   };
   pointer.setCenter(cubeDiv);
@@ -99,7 +102,9 @@
     if (pointerMoveSwitch.checked) {
       pointer.setCenter(cubeDiv);
       pointer.updatePosition(event);
-      pointerPoint.style.transform = `translate(${pointer.x}px, ${-1 * pointer.y}px)`;
+      pointerPoint.style.transform = `translate(${pointer.x}px, ${
+        -1 * pointer.y
+      }px)`;
       pointerPoint.style.display = "block";
       cube.style.animation = "none"; // stop animation
     }
@@ -154,4 +159,16 @@
   cubeDiv.addEventListener("pointerenter", onPointerEnter);
   cubeDiv.addEventListener("pointermove", onPointerMove);
   cubeDiv.addEventListener("pointerleave", onPointerLeave);
+
+  try {
+    const gyroscope = new Gyroscope({ frequency: 60 });
+    gyroscope?.addEventListener("reading", (e) => {
+      console.log(`Angular velocity along the X-axis ${gyroscope.x}`);
+      console.log(`Angular velocity along the Y-axis ${gyroscope.y}`);
+      console.log(`Angular velocity along the Z-axis ${gyroscope.z}`);
+    });
+    gyroscope?.start();
+  } catch {
+    console.warn(`${window.navigator.appCodeName} browser not support the gyroscope api`);
+  }
 })();
