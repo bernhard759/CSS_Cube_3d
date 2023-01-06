@@ -166,7 +166,7 @@
       "deviceorientation",
       (event) => {
         cube.style.transform = `rotateX(${Math.round(event.beta)}deg) 
-        rotateY(${Math.round(event.alpha)}deg) translateZ(10px)`;
+        rotateY(${Math.round(event.gamma)}deg) translateZ(10px)`;
       },
       true
     );
