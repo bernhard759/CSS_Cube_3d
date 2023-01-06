@@ -192,12 +192,11 @@
     window.addEventListener(
       "deviceorientation",
       (event) => {
-        console.log(event.beta);
         if (
           checkboxesDiv.querySelector("input#orientation").checked &&
           !pointerMoveEnabled
         ) {
-          cube.style.transform = `rotateX(${-(event.beta-10)}deg) 
+          cube.style.transform = `rotateX(${-event.beta}deg) 
         rotateY(${event.gamma}deg) translateZ(10px)`;
         }
       },
