@@ -5,6 +5,7 @@
   let ticking = false;
   let counterPointermove = 0;
   let pointerMoveEnabled = false;
+  let counterDeviceOrientation = 0;
 
   /* HTML elements */
   const cubeDiv = document.querySelector(".cube-div");
@@ -135,7 +136,7 @@
       });
       ticking = true;
     }
-    if (counterPointermove++ % 8 == 0) {
+    if (counterPointermove++ % 10 == 0) {
       pointer.setCenter(cubeDiv);
       changeCubeTranslate(posX, posY);
     }
@@ -195,7 +196,7 @@
       (event) => {
         if (
           checkboxesDiv.querySelector("input#orientation").checked &&
-          !pointerMoveEnabled
+          !pointerMoveEnabled && counterDeviceOrientation++ % 10 == 0
         ) {
           cube.style.transform = `rotateX(${-event.beta}deg) 
         rotateY(${event.gamma}deg) translateZ(10px)`;
