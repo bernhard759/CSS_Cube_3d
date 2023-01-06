@@ -196,7 +196,7 @@
       (event) => {
         if (
           checkboxesDiv.querySelector("input#orientation").checked &&
-          !pointerMoveEnabled && counterDeviceOrientation++ % 10 == 0
+          !pointerMoveEnabled && counterDeviceOrientation++ % 20 == 0
         ) {
           cube.style.transform = `rotateX(${-event.beta}deg) 
         rotateY(${event.gamma}deg) translateZ(10px)`;
