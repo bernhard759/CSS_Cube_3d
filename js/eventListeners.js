@@ -16,6 +16,8 @@
   const radioText = document.querySelector("div.form-check #option-text");
   const radioNumbers = document.querySelector("div.form-check #option-numbers");
   const radioDice = document.querySelector("div.form-check #option-dice");
+  const template = document.querySelector("orientation-checkbox-template");
+  const checkboxesDiv = document.querySelector("div.checkboxes");
 
   /* Create pointer position point */
   const pointerPoint = document.createElement("span");
@@ -162,14 +164,22 @@
 
   /* Device orientation eventlistener */
   if (window.DeviceOrientationEvent) {
+
+    const firstClone = template.content.cloneNode(true);
+    checkboxesDiv.appendChild(firstClone);
+
     window.addEventListener(
       "deviceorientation",
       (event) => {
-        cube.style.transform = `rotateX(${Math.round(event.beta)}deg) 
-        rotateY(${Math.round(event.gamma)}deg) translateZ(10px)`;
+        if (firstClone.querySelector("input").checked) {
+        cube.style.transform = `rotateX(${-event.beta}deg) 
+        rotateY(${event.gamma}deg) translateZ(10px)`;
+        }
       },
       true
     );
+
+   
   }
 
 })();
