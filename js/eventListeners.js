@@ -16,7 +16,7 @@
   const radioText = document.querySelector("div.form-check #option-text");
   const radioNumbers = document.querySelector("div.form-check #option-numbers");
   const radioDice = document.querySelector("div.form-check #option-dice");
-  const template = document.querySelector("orientation-checkbox-template");
+  const template = document.querySelector("template#orientation-checkbox-template");
   const checkboxesDiv = document.querySelector("div.checkboxes");
 
   /* Create pointer position point */
